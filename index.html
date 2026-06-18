@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ship Detection from Satellite Images</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: #0d1b2a;
+            color: #e0e1dd;
+            display: flex;
+            justify-content: center;
+            padding: 40px 20px;
+            margin: 0;
+        }
+        .card {
+            background: #1b263b;
+            border-radius: 12px;
+            padding: 32px;
+            max-width: 480px;
+            width: 100%;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+        }
+        h1 {
+            font-size: 22px;
+            margin-bottom: 4px;
+            color: #ffffff;
+        }
+        p.subtitle {
+            color: #9aa6b2;
+            margin-top: 0;
+            margin-bottom: 24px;
+            font-size: 14px;
+        }
+        input[type="file"] {
+            width: 100%;
+            padding: 10px;
+            background: #0d1b2a;
+            border: 1px solid #415a77;
+            border-radius: 6px;
+            color: #e0e1dd;
+            margin-bottom: 16px;
+        }
+        button {
+            background: #00a896;
+            color: #ffffff;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 6px;
+            font-size: 15px;
+            cursor: pointer;
+            width: 100%;
+        }
+        button:hover {
+            background: #02c39a;
+        }
+        .result {
+            margin-top: 24px;
+            padding: 16px;
+            border-radius: 8px;
+            background: #283b53;
+            text-align: center;
+        }
+        .result h2 {
+            margin: 0 0 6px 0;
+            font-size: 18px;
+        }
+        .result p {
+            margin: 0;
+            color: #9aa6b2;
+            font-size: 13px;
+        }
+        img.preview {
+            display: block;
+            max-width: 100%;
+            margin-top: 16px;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h1>Ship Detection from Satellite Images</h1>
+        <p class="subtitle">Upload a satellite image patch to check for the presence of a ship.</p>
+
+        <form action="/predict" method="post" enctype="multipart/form-data">
+            <input type="file" name="file" accept="image/png, image/jpeg" required>
+            <button type="submit">Detect</button>
+        </form>
+
+        {% if result %}
+        <div class="result">
+            <h2>{{ result }}</h2>
+            {% if confidence %}
+            <p>Confidence: {{ confidence }}</p>
+            {% endif %}
+        </div>
+        {% endif %}
+
+        {% if image_url %}
+        <img class="preview" src="{{ image_url }}" alt="Uploaded image">
+        {% endif %}
+    </div>
+</body>
+</html>
