@@ -1,0 +1,27 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.Python
+env/
+venv/
+.venv/
+
+# Model & data (too large for git, download separately)
+data/shipsnet.json
+data/shipsnet/
+model/*.h5
+model/*.keras
+
+# Flask uploads
+static/uploads/*
+!static/uploads/.gitkeep
+
+# Jupyter
+.ipynb_checkpoints/
+
+# OS / IDE
+.DS_Store
+.vscode/
+.idea/
+*.log
